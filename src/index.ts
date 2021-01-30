@@ -11,6 +11,9 @@ import cors from "cors";
 import { COOKIE_NAME, __prod__ } from "./constants";
 import { MyContext } from "./types";
 import { HowdyResolver } from "./resolvers/howdy";
+import { User } from "./entities/User";
+import { Income } from "./entities/Income";
+import { Expense } from "./entities/Expense";
 
 const main = async () => {
   dotenv.config();
@@ -20,7 +23,7 @@ const main = async () => {
     database: process.env.DB,
     logging: true,
     synchronize: true,
-    entities: [],
+    entities: [User, Income, Expense],
   });
 
   const app = express();

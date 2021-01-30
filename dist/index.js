@@ -24,6 +24,9 @@ const connect_redis_1 = __importDefault(require("connect-redis"));
 const cors_1 = __importDefault(require("cors"));
 const constants_1 = require("./constants");
 const howdy_1 = require("./resolvers/howdy");
+const User_1 = require("./entities/User");
+const Income_1 = require("./entities/Income");
+const Expense_1 = require("./entities/Expense");
 const main = () => __awaiter(void 0, void 0, void 0, function* () {
     dotenv_1.default.config();
     yield typeorm_1.createConnection({
@@ -31,7 +34,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
         database: process.env.DB,
         logging: true,
         synchronize: true,
-        entities: [],
+        entities: [User_1.User, Income_1.Income, Expense_1.Expense],
     });
     const app = express_1.default();
     const RedisStore = connect_redis_1.default(express_session_1.default);

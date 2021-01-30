@@ -9,29 +9,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Income = void 0;
+exports.Expense = void 0;
 const type_graphql_1 = require("type-graphql");
 const typeorm_1 = require("typeorm");
-let Income = class Income extends typeorm_1.BaseEntity {
+let Expense = class Expense extends typeorm_1.BaseEntity {
 };
 __decorate([
     type_graphql_1.Field(),
     typeorm_1.PrimaryGeneratedColumn(),
     __metadata("design:type", Number)
-], Income.prototype, "id", void 0);
+], Expense.prototype, "id", void 0);
 __decorate([
     type_graphql_1.Field(),
     typeorm_1.Column(),
     __metadata("design:type", Number)
-], Income.prototype, "amount", void 0);
+], Expense.prototype, "amount", void 0);
 __decorate([
     type_graphql_1.Field(),
     typeorm_1.Column(),
     __metadata("design:type", String)
-], Income.prototype, "category", void 0);
-Income = __decorate([
+], Expense.prototype, "category", void 0);
+Expense = __decorate([
     type_graphql_1.ObjectType(),
     typeorm_1.Entity()
-], Income);
-exports.Income = Income;
-//# sourceMappingURL=Income.js.map
+], Expense);
+exports.Expense = Expense;
+//# sourceMappingURL=Expense.js.map

@@ -12,6 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 const type_graphql_1 = require("type-graphql");
 const typeorm_1 = require("typeorm");
+const Expense_1 = require("./Expense");
+const Income_1 = require("./Income");
 let User = class User extends typeorm_1.BaseEntity {
 };
 __decorate([
@@ -33,6 +35,14 @@ __decorate([
     typeorm_1.Column({ unique: true }),
     __metadata("design:type", String)
 ], User.prototype, "email", void 0);
+__decorate([
+    typeorm_1.OneToMany(() => Income_1.Income, (income) => income.user),
+    __metadata("design:type", Array)
+], User.prototype, "incomes", void 0);
+__decorate([
+    typeorm_1.OneToMany(() => Expense_1.Expense, (expense) => expense.user),
+    __metadata("design:type", Array)
+], User.prototype, "expenses", void 0);
 User = __decorate([
     type_graphql_1.ObjectType(),
     typeorm_1.Entity()

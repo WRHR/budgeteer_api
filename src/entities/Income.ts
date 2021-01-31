@@ -1,5 +1,14 @@
 import { Field, ObjectType } from "type-graphql";
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryColumn,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import { User } from "./User";
 
 @ObjectType()
 @Entity()
@@ -15,4 +24,12 @@ export class Income extends BaseEntity {
   @Field()
   @Column()
   category!: string;
+
+  @Field()
+  @PrimaryColumn()
+  userId: number;
+
+  @ManyToOne(() => User, (user) => user.incomes)
+  @JoinColumn({ name: "userId" })
+  user: User;
 }

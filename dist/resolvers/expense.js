@@ -86,6 +86,7 @@ let ExpenseResolver = class ExpenseResolver {
                     .values({
                     amount: options.amount,
                     category: options.category,
+                    userId: req.session.userId,
                 })
                     .returning("*")
                     .execute();

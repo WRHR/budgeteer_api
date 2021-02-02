@@ -64,6 +64,7 @@ export class IncomeResolver {
         .values({
           amount: options.amount,
           category: options.category,
+          userId: req.session.userId,
         })
         .returning("*")
         .execute();

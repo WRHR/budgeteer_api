@@ -10,10 +10,12 @@ import connectRedis from "connect-redis";
 import cors from "cors";
 import { COOKIE_NAME, __prod__ } from "./constants";
 import { MyContext } from "./types";
-import { HowdyResolver } from "./resolvers/howdy";
 import { User } from "./entities/User";
 import { Income } from "./entities/Income";
 import { Expense } from "./entities/Expense";
+import { UserResolver } from "./resolvers/user";
+import { IncomeResolver } from "./resolvers/income";
+import { ExpenseResolver } from "./resolvers/expense";
 
 const main = async () => {
   dotenv.config();
@@ -59,7 +61,7 @@ const main = async () => {
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers:[HowdyResolver],
+      resolvers:[UserResolver, IncomeResolver, ExpenseResolver],
       validate:false
     }),
     context: ({req, res}): MyContext => ({req, res, redis})

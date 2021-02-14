@@ -68,15 +68,14 @@ export class IncomeResolver {
         })
         .returning("*")
         .execute();
-      console.log("task result", result);
       income = result.raw[0];
     } catch (err) {
       if (err) {
         return {
           errors: [
             {
-              field: "task",
-              message: "cannot create task",
+              field: "income",
+              message: "cannot create income",
             },
           ],
         };

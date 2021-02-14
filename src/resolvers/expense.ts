@@ -68,7 +68,6 @@ export class ExpenseResolver {
         })
         .returning("*")
         .execute();
-      console.log("task result", result);
       expense = result.raw[0];
     } catch (err) {
       if (err) {
@@ -76,7 +75,7 @@ export class ExpenseResolver {
           errors: [
             {
               field: "expense",
-              message: "cannot create task",
+              message: "cannot create expense",
             },
           ],
         };

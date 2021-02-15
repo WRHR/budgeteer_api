@@ -18,6 +18,9 @@ class IncomeOptions {
 
   @Field()
   category!: string;
+
+  @Field()
+  occurance:string
 }
 
 @ObjectType()

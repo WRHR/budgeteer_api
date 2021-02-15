@@ -18,6 +18,9 @@ class ExpenseOptions {
 
   @Field()
   category!: string;
+
+  @Field()
+  occurance: string;
 }
 
 @ObjectType()

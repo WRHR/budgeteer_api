@@ -26,6 +26,10 @@ export class Income extends BaseEntity {
   category!: string;
 
   @Field()
+  @Column()
+  occurance: string;
+
+  @Field()
   @PrimaryColumn()
   userId: number;
 

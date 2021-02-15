@@ -23,6 +23,10 @@ export class Expense extends BaseEntity {
 
   @Field()
   @Column()
+  occurance: string;
+
+  @Field()
+  @Column()
   category!: string;
 
   @Field()

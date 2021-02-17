@@ -52,39 +52,50 @@ export class ExpenseResolver {
     return await Expense.findOne(id);
   }
 
-  @Mutation(() => ExpenseResponse)
+  // @Mutation(() => ExpenseResponse)
+  // async createExpense(
+  //   @Arg("options") options: ExpenseOptions,
+  //   @Ctx() { req }: MyContext
+  // ): Promise<ExpenseResponse> {
+  //   let expense;
+
+  //   try {
+  //     const result = await getConnection()
+  //       .createQueryBuilder()
+  //       .insert()
+  //       .into(Expense)
+  //       .values({
+  //         amount: options.amount,
+  //         category: options.category,
+  //         userId: req.session.userId,
+  //       })
+  //       .returning("*")
+  //       .execute();
+  //     expense = result.raw[0];
+  //   } catch (err) {
+  //     if (err) {
+  //       return {
+  //         errors: [
+  //           {
+  //             field: "expense",
+  //             message: "cannot create expense",
+  //           },
+  //         ],
+  //       };
+  //     }
+  //   }
+  //   return { expense };
+  // }
+
+  @Mutation(() => Expense)
   async createExpense(
     @Arg("options") options: ExpenseOptions,
     @Ctx() { req }: MyContext
-  ): Promise<ExpenseResponse> {
-    let expense;
-
-    try {
-      const result = await getConnection()
-        .createQueryBuilder()
-        .insert()
-        .into(Expense)
-        .values({
-          amount: options.amount,
-          category: options.category,
-          userId: req.session.userId,
-        })
-        .returning("*")
-        .execute();
-      expense = result.raw[0];
-    } catch (err) {
-      if (err) {
-        return {
-          errors: [
-            {
-              field: "expense",
-              message: "cannot create expense",
-            },
-          ],
-        };
-      }
-    }
-    return { expense };
+  ): Promise<Expense> {
+    return Expense.create({
+      ...options,
+      userId: req.session.userId,
+    }).save();
   }
 
   @Mutation(() => Expense, { nullable: true })

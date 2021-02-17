@@ -52,39 +52,49 @@ export class IncomeResolver {
     return await Income.findOne(id);
   }
 
-  @Mutation(() => IncomeResponse)
+  // @Mutation(() => IncomeResponse)
+  // async createIncome(
+  //   @Arg("options") options: IncomeOptions,
+  //   @Ctx() { req }: MyContext
+  // ): Promise<IncomeResponse> {
+  //   let income;
+
+  //   try {
+  //     const result = await getConnection()
+  //       .createQueryBuilder()
+  //       .insert()
+  //       .into(Income)
+  //       .values({
+  //         amount: options.amount,
+  //         category: options.category,
+  //         userId: req.session.userId,
+  //       })
+  //       .returning("*")
+  //       .execute();
+  //     income = result.raw[0];
+  //   } catch (err) {
+  //     if (err) {
+  //       return {
+  //         errors: [
+  //           {
+  //             field: "income",
+  //             message: "cannot create income",
+  //           },
+  //         ],
+  //       };
+  //     }
+  //   }
+  //   return { income };
+  // }
+  @Mutation(() => Income)
   async createIncome(
     @Arg("options") options: IncomeOptions,
     @Ctx() { req }: MyContext
-  ): Promise<IncomeResponse> {
-    let income;
-
-    try {
-      const result = await getConnection()
-        .createQueryBuilder()
-        .insert()
-        .into(Income)
-        .values({
-          amount: options.amount,
-          category: options.category,
-          userId: req.session.userId,
-        })
-        .returning("*")
-        .execute();
-      income = result.raw[0];
-    } catch (err) {
-      if (err) {
-        return {
-          errors: [
-            {
-              field: "income",
-              message: "cannot create income",
-            },
-          ],
-        };
-      }
-    }
-    return { income };
+  ): Promise<Income> {
+    return Income.create({
+      ...options,
+      userId: req.session.userId,
+    }).save();
   }
 
   @Mutation(() => Income, { nullable: true })

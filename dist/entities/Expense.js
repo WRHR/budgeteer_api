@@ -29,6 +29,11 @@ __decorate([
     type_graphql_1.Field(),
     typeorm_1.Column(),
     __metadata("design:type", String)
+], Expense.prototype, "occurance", void 0);
+__decorate([
+    type_graphql_1.Field(),
+    typeorm_1.Column(),
+    __metadata("design:type", String)
 ], Expense.prototype, "category", void 0);
 __decorate([
     type_graphql_1.Field(),

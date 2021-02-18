@@ -32,6 +32,11 @@ __decorate([
 ], Income.prototype, "category", void 0);
 __decorate([
     type_graphql_1.Field(),
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], Income.prototype, "occurance", void 0);
+__decorate([
+    type_graphql_1.Field(),
     typeorm_1.PrimaryColumn(),
     __metadata("design:type", Number)
 ], Income.prototype, "userId", void 0);

@@ -24,7 +24,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.IncomeResolver = void 0;
 const Income_1 = require("src/entities/Income");
 const type_graphql_1 = require("type-graphql");
-const typeorm_1 = require("typeorm");
 let IncomeOptions = class IncomeOptions {
 };
 __decorate([
@@ -35,6 +34,10 @@ __decorate([
     type_graphql_1.Field(),
     __metadata("design:type", String)
 ], IncomeOptions.prototype, "category", void 0);
+__decorate([
+    type_graphql_1.Field(),
+    __metadata("design:type", String)
+], IncomeOptions.prototype, "occurance", void 0);
 IncomeOptions = __decorate([
     type_graphql_1.InputType()
 ], IncomeOptions);
@@ -77,35 +80,7 @@ let IncomeResolver = class IncomeResolver {
     }
     createIncome(options, { req }) {
         return __awaiter(this, void 0, void 0, function* () {
-            let income;
-            try {
-                const result = yield typeorm_1.getConnection()
-                    .createQueryBuilder()
-                    .insert()
-                    .into(Income_1.Income)
-                    .values({
-                    amount: options.amount,
-                    category: options.category,
-                    userId: req.session.userId,
-                })
-                    .returning("*")
-                    .execute();
-                console.log("task result", result);
-                income = result.raw[0];
-            }
-            catch (err) {
-                if (err) {
-                    return {
-                        errors: [
-                            {
-                                field: "task",
-                                message: "cannot create task",
-                            },
-                        ],
-                    };
-                }
-            }
-            return { income };
+            return Income_1.Income.create(Object.assign(Object.assign({}, options), { userId: req.session.userId })).save();
         });
     }
     updateIncome(id, amount) {
@@ -141,7 +116,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], IncomeResolver.prototype, "findIncome", null);
 __decorate([
-    type_graphql_1.Mutation(() => IncomeResponse),
+    type_graphql_1.Mutation(() => Income_1.Income),
     __param(0, type_graphql_1.Arg("options")),
     __param(1, type_graphql_1.Ctx()),
     __metadata("design:type", Function),
@@ -151,7 +126,7 @@ __decorate([
 __decorate([
     type_graphql_1.Mutation(() => Income_1.Income, { nullable: true }),
     __param(0, type_graphql_1.Arg("id")),
-    __param(1, type_graphql_1.Arg("amount", () => String, { nullable: true })),
+    __param(1, type_graphql_1.Arg("amount")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, Number]),
     __metadata("design:returntype", Promise)

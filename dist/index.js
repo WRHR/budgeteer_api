@@ -23,10 +23,12 @@ const express_session_1 = __importDefault(require("express-session"));
 const connect_redis_1 = __importDefault(require("connect-redis"));
 const cors_1 = __importDefault(require("cors"));
 const constants_1 = require("./constants");
-const howdy_1 = require("./resolvers/howdy");
 const User_1 = require("./entities/User");
 const Income_1 = require("./entities/Income");
 const Expense_1 = require("./entities/Expense");
+const user_1 = require("./resolvers/user");
+const income_1 = require("./resolvers/income");
+const expense_1 = require("./resolvers/expense");
 const main = () => __awaiter(void 0, void 0, void 0, function* () {
     dotenv_1.default.config();
     yield typeorm_1.createConnection({
@@ -61,7 +63,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
     }));
     const apolloServer = new apollo_server_express_1.ApolloServer({
         schema: yield type_graphql_1.buildSchema({
-            resolvers: [howdy_1.HowdyResolver],
+            resolvers: [user_1.UserResolver, income_1.IncomeResolver, expense_1.ExpenseResolver],
             validate: false
         }),
         context: ({ req, res }) => ({ req, res, redis })

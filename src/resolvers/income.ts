@@ -100,7 +100,7 @@ export class IncomeResolver {
   @Mutation(() => Income, { nullable: true })
   async updateIncome(
     @Arg("id") id: number,
-    @Arg("amount", () => String, { nullable: true }) amount: number
+    @Arg("amount") amount: number
   ): Promise<Income | null> {
     const income = await Income.findOne(id);
     if (!income) {

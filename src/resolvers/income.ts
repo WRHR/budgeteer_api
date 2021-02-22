@@ -20,24 +20,7 @@ class IncomeOptions {
   category!: string;
 
   @Field()
-  occurance:string
-}
-
-@ObjectType()
-class FieldError {
-  @Field()
-  field: string;
-  @Field()
-  message: string;
-}
-
-@ObjectType()
-class IncomeResponse {
-  @Field(() => [FieldError], { nullable: true })
-  errors?: FieldError[];
-
-  @Field(() => Income, { nullable: true })
-  income?: Income;
+  occurance: string;
 }
 
 @ObjectType()
@@ -52,40 +35,6 @@ export class IncomeResolver {
     return await Income.findOne(id);
   }
 
-  // @Mutation(() => IncomeResponse)
-  // async createIncome(
-  //   @Arg("options") options: IncomeOptions,
-  //   @Ctx() { req }: MyContext
-  // ): Promise<IncomeResponse> {
-  //   let income;
-
-  //   try {
-  //     const result = await getConnection()
-  //       .createQueryBuilder()
-  //       .insert()
-  //       .into(Income)
-  //       .values({
-  //         amount: options.amount,
-  //         category: options.category,
-  //         userId: req.session.userId,
-  //       })
-  //       .returning("*")
-  //       .execute();
-  //     income = result.raw[0];
-  //   } catch (err) {
-  //     if (err) {
-  //       return {
-  //         errors: [
-  //           {
-  //             field: "income",
-  //             message: "cannot create income",
-  //           },
-  //         ],
-  //       };
-  //     }
-  //   }
-  //   return { income };
-  // }
   @Mutation(() => Income)
   async createIncome(
     @Arg("options") options: IncomeOptions,

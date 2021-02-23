@@ -23,22 +23,22 @@ class ExpenseOptions {
   occurance: string;
 }
 
-@ObjectType()
-class FieldError {
-  @Field()
-  field: string;
-  @Field()
-  message: string;
-}
+// @ObjectType()
+// class FieldError {
+//   @Field()
+//   field: string;
+//   @Field()
+//   message: string;
+// }
 
-@ObjectType()
-class ExpenseResponse {
-  @Field(() => [FieldError], { nullable: true })
-  errors?: FieldError[];
+// @ObjectType()
+// class ExpenseResponse {
+//   @Field(() => [FieldError], { nullable: true })
+//   errors?: FieldError[];
 
-  @Field(() => Expense, { nullable: true })
-  expense?: Expense;
-}
+//   @Field(() => Expense, { nullable: true })
+//   expense?: Expense;
+// }
 
 @ObjectType()
 export class ExpenseResolver {

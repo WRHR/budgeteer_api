@@ -8,7 +8,6 @@ import {
   ObjectType,
   Query,
 } from "type-graphql";
-import { getConnection } from "typeorm";
 import { MyContext } from "../types";
 
 @InputType()

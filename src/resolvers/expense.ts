@@ -4,6 +4,7 @@ import {
   Ctx,
   Field,
   InputType,
+  Int,
   Mutation,
   ObjectType,
   Query,
@@ -114,7 +115,7 @@ export class ExpenseResolver {
   }
 
   @Mutation(() => Boolean)
-  async deleteExpesee(@Arg("id") id: number): Promise<boolean> {
+  async deleteExpense(@Arg("id", ()=>Int) id: number): Promise<boolean> {
     await Expense.delete(id);
     return true;
   }

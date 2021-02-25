@@ -4,6 +4,7 @@ import {
   Ctx,
   Field,
   InputType,
+  Int,
   Mutation,
   ObjectType,
   Query,
@@ -61,7 +62,7 @@ export class IncomeResolver {
   }
 
   @Mutation(() => Boolean)
-  async deleteIncome(@Arg("id") id: number): Promise<boolean> {
+  async deleteIncome(@Arg("id", ()=>Int) id: number): Promise<boolean> {
     await Income.delete(id);
     return true;
   }

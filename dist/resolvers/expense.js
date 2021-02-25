@@ -69,7 +69,7 @@ let ExpenseResolver = class ExpenseResolver {
             return expense;
         });
     }
-    deleteExpesee(id) {
+    deleteExpense(id) {
         return __awaiter(this, void 0, void 0, function* () {
             yield Expense_1.Expense.delete(id);
             return true;
@@ -107,11 +107,11 @@ __decorate([
 ], ExpenseResolver.prototype, "updateExpense", null);
 __decorate([
     type_graphql_1.Mutation(() => Boolean),
-    __param(0, type_graphql_1.Arg("id")),
+    __param(0, type_graphql_1.Arg("id", () => type_graphql_1.Int)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
-], ExpenseResolver.prototype, "deleteExpesee", null);
+], ExpenseResolver.prototype, "deleteExpense", null);
 ExpenseResolver = __decorate([
     type_graphql_1.ObjectType()
 ], ExpenseResolver);

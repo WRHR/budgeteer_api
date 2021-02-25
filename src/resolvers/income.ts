@@ -1,4 +1,4 @@
-import { Income } from "src/entities/Income";
+import { Income } from "../entities/Income";
 import {
   Arg,
   Ctx,

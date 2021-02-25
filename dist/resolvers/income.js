@@ -22,7 +22,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.IncomeResolver = void 0;
-const Income_1 = require("src/entities/Income");
+const Income_1 = require("../entities/Income");
 const type_graphql_1 = require("type-graphql");
 let IncomeOptions = class IncomeOptions {
 };
@@ -41,32 +41,6 @@ __decorate([
 IncomeOptions = __decorate([
     type_graphql_1.InputType()
 ], IncomeOptions);
-let FieldError = class FieldError {
-};
-__decorate([
-    type_graphql_1.Field(),
-    __metadata("design:type", String)
-], FieldError.prototype, "field", void 0);
-__decorate([
-    type_graphql_1.Field(),
-    __metadata("design:type", String)
-], FieldError.prototype, "message", void 0);
-FieldError = __decorate([
-    type_graphql_1.ObjectType()
-], FieldError);
-let IncomeResponse = class IncomeResponse {
-};
-__decorate([
-    type_graphql_1.Field(() => [FieldError], { nullable: true }),
-    __metadata("design:type", Array)
-], IncomeResponse.prototype, "errors", void 0);
-__decorate([
-    type_graphql_1.Field(() => Income_1.Income, { nullable: true }),
-    __metadata("design:type", Income_1.Income)
-], IncomeResponse.prototype, "income", void 0);
-IncomeResponse = __decorate([
-    type_graphql_1.ObjectType()
-], IncomeResponse);
 let IncomeResolver = class IncomeResolver {
     allIncomes() {
         return __awaiter(this, void 0, void 0, function* () {

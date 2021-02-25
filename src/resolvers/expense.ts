@@ -1,4 +1,4 @@
-import { Expense } from "src/entities/Expense";
+import { Expense } from "../entities/Expense";
 import {
   Arg,
   Ctx,

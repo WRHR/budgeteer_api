@@ -22,7 +22,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ExpenseResolver = void 0;
-const Expense_1 = require("src/entities/Expense");
+const Expense_1 = require("../entities/Expense");
 const type_graphql_1 = require("type-graphql");
 let ExpenseOptions = class ExpenseOptions {
 };
@@ -41,32 +41,6 @@ __decorate([
 ExpenseOptions = __decorate([
     type_graphql_1.InputType()
 ], ExpenseOptions);
-let FieldError = class FieldError {
-};
-__decorate([
-    type_graphql_1.Field(),
-    __metadata("design:type", String)
-], FieldError.prototype, "field", void 0);
-__decorate([
-    type_graphql_1.Field(),
-    __metadata("design:type", String)
-], FieldError.prototype, "message", void 0);
-FieldError = __decorate([
-    type_graphql_1.ObjectType()
-], FieldError);
-let ExpenseResponse = class ExpenseResponse {
-};
-__decorate([
-    type_graphql_1.Field(() => [FieldError], { nullable: true }),
-    __metadata("design:type", Array)
-], ExpenseResponse.prototype, "errors", void 0);
-__decorate([
-    type_graphql_1.Field(() => Expense_1.Expense, { nullable: true }),
-    __metadata("design:type", Expense_1.Expense)
-], ExpenseResponse.prototype, "expense", void 0);
-ExpenseResponse = __decorate([
-    type_graphql_1.ObjectType()
-], ExpenseResponse);
 let ExpenseResolver = class ExpenseResolver {
     allExpenses() {
         return __awaiter(this, void 0, void 0, function* () {

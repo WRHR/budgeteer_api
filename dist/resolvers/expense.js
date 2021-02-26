@@ -57,14 +57,14 @@ let ExpenseResolver = class ExpenseResolver {
             return Expense_1.Expense.create(Object.assign(Object.assign({}, options), { userId: req.session.userId })).save();
         });
     }
-    updateExpense(id, amount) {
+    updateExpense(id, options) {
         return __awaiter(this, void 0, void 0, function* () {
             const expense = yield Expense_1.Expense.findOne(id);
             if (!expense) {
                 return null;
             }
-            if (typeof amount !== "undefined") {
-                Expense_1.Expense.update({ id }, { amount });
+            if (typeof options.amount !== "undefined") {
+                Expense_1.Expense.update({ id }, Object.assign({}, options));
             }
             return expense;
         });
@@ -100,9 +100,9 @@ __decorate([
 __decorate([
     type_graphql_1.Mutation(() => Expense_1.Expense, { nullable: true }),
     __param(0, type_graphql_1.Arg("id")),
-    __param(1, type_graphql_1.Arg("amount")),
+    __param(1, type_graphql_1.Arg("options")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, Number]),
+    __metadata("design:paramtypes", [Number, ExpenseOptions]),
     __metadata("design:returntype", Promise)
 ], ExpenseResolver.prototype, "updateExpense", null);
 __decorate([

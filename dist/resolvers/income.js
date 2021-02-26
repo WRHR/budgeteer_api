@@ -57,14 +57,14 @@ let IncomeResolver = class IncomeResolver {
             return Income_1.Income.create(Object.assign(Object.assign({}, options), { userId: req.session.userId })).save();
         });
     }
-    updateIncome(id, amount) {
+    updateIncome(id, options) {
         return __awaiter(this, void 0, void 0, function* () {
             const income = yield Income_1.Income.findOne(id);
             if (!income) {
                 return null;
             }
-            if (typeof amount !== "undefined") {
-                Income_1.Income.update({ id }, { amount });
+            if (typeof options.amount !== "undefined") {
+                Income_1.Income.update({ id }, Object.assign({}, options));
             }
             return income;
         });
@@ -100,9 +100,9 @@ __decorate([
 __decorate([
     type_graphql_1.Mutation(() => Income_1.Income, { nullable: true }),
     __param(0, type_graphql_1.Arg("id")),
-    __param(1, type_graphql_1.Arg("amount")),
+    __param(1, type_graphql_1.Arg("options")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, Number]),
+    __metadata("design:paramtypes", [Number, IncomeOptions]),
     __metadata("design:returntype", Promise)
 ], IncomeResolver.prototype, "updateIncome", null);
 __decorate([

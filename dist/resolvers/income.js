@@ -99,7 +99,7 @@ __decorate([
 ], IncomeResolver.prototype, "createIncome", null);
 __decorate([
     type_graphql_1.Mutation(() => Income_1.Income, { nullable: true }),
-    __param(0, type_graphql_1.Arg("id")),
+    __param(0, type_graphql_1.Arg("id", () => type_graphql_1.Int)),
     __param(1, type_graphql_1.Arg("options")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, IncomeOptions]),

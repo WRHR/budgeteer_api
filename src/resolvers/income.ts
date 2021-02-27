@@ -48,7 +48,7 @@ export class IncomeResolver {
 
   @Mutation(() => Income, { nullable: true })
   async updateIncome(
-    @Arg("id") id: number,
+    @Arg("id", ()=>Int) id: number,
     @Arg("options") options: IncomeOptions
   ): Promise<Income | null> {
     const income = await Income.findOne(id);

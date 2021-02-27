@@ -101,7 +101,7 @@ export class ExpenseResolver {
 
   @Mutation(() => Expense, { nullable: true })
   async updateExpense(
-    @Arg("id") id: number,
+    @Arg("id", ()=>Int) id: number,
     @Arg("options") options: ExpenseOptions
   ): Promise<Expense | null> {
     const expense = await Expense.findOne(id);
